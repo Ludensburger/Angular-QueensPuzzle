@@ -1,0 +1,19 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <h1 class="text-2xl font-bold mb-4">Welcome to the Queens Puzzle</h1>
+
+  <div class="w-64">
+    <table class="table-fixed font-bold text-red-600">
+      <tr *ngFor="let row of board; let i = index">
+        <td
+          *ngFor="let cell of row; let j = index"
+          class="border border-gray-600 w-8 h-8 text-center align-middle bg-white dark:bg-gray-800 hover:bg-blue-500 hover:text-white cursor-pointer transition-colors duration-200"
+          [class.bg-gray-300]="(i + j) % 2 === 0"
+          [class.dark:bg-gray-700]="(i + j) % 2 === 0"
+          (click)="placeQueen(i, j)"
+        >
+          {{ cell }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
