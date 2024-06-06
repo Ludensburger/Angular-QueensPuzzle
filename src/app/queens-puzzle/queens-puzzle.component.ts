@@ -91,6 +91,14 @@ export class QueensPuzzleComponent {
     }
   }
 
+  clearBoard() {
+    for (let i = 0; i < this.N; i++) {
+      for (let j = 0; j < this.N; j++) {
+        this.board[i][j] = ' ';
+      }
+    }
+  }
+
   checkBoard() {
     for (let i = 0; i < this.N; i++) {
       for (let j = 0; j < this.N; j++) {
@@ -105,5 +113,62 @@ export class QueensPuzzleComponent {
   start() {
     this.initializeBoard();
     this.statusMessage = '';
+  }
+
+  restart() {
+    console.log('Restarting...');
+    this.queenCount = 0;
+    this.clearBoard();
+    this.initializeBoard();
+    this.statusMessage = '';
+  }
+
+  solutionOne() {
+    // #1
+    // New solution for Queen's Puzzle
+    this.placeQueen(0, 3); // R1 C4
+    this.placeQueen(1, 1); // R2 C2
+    this.placeQueen(2, 7); // R3 C8
+    this.placeQueen(3, 4); // R4 C5
+    this.placeQueen(4, 6); // R5 C7
+    this.placeQueen(5, 0); // R6 C1
+    this.placeQueen(6, 2); // R7 C3
+    this.placeQueen(7, 5); // R8 C6
+  }
+
+  solutionTwo() {
+    // #2
+    // Another solution for Queen's Puzzle
+    this.placeQueen(0, 0); // R1 C1
+    this.placeQueen(1, 4); // R2 C5
+    this.placeQueen(2, 7); // R3 C8
+    this.placeQueen(3, 5); // R4 C6
+    this.placeQueen(4, 2); // R5 C3
+    this.placeQueen(5, 6); // R6 C7
+    this.placeQueen(6, 1); // R7 C2
+    this.placeQueen(7, 3); // R8 C4
+  }
+
+  solutionThree() {
+    // #3
+    // Another solution for Queen's Puzzle
+    this.placeQueen(0, 4); // R1 C5
+    this.placeQueen(1, 6); // R2 C7
+    this.placeQueen(2, 1); // R3 C2
+    this.placeQueen(3, 5); // R4 C6
+    this.placeQueen(4, 2); // R5 C3
+    this.placeQueen(5, 0); // R6 C1
+    this.placeQueen(6, 3); // R7 C4
+    this.placeQueen(7, 7); // R8 C8
+  }
+
+  solve() {
+    this.restart();
+    let solutions = [
+      this.solutionOne.bind(this),
+      this.solutionTwo.bind(this),
+      this.solutionThree.bind(this),
+    ];
+    solutions[Math.floor(Math.random() * solutions.length)]();
   }
 }
